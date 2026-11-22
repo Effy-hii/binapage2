@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}</style>
+<title>מלמד לאנוש בינה</title>
+<meta name="description" content="הרצאות וסדנאות בבינה מלאכותית לצוותי ישיבות הסדר, עם הרב אפרים שרם.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;600&family=Rubik:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: one climb down the page. Stage 1, stage 2, then the session that answers each stage. */
+:root {
+  --navy: #15375f;
+  --navy-deep: #0e2c4d;
+  --ink: #183657;
+  --muted: #526a83;
+  --mist: #f1f4f8;
+  --line: #dce5ee;
+  --peach: #e9bd91;
+  --copper: #96603a;
+  --on-navy: #dce7f2;
+  --white: #ffffff;
+  --sans: "Rubik", "Arial Hebrew", Arial, sans-serif;
+  --serif: "Noto Serif Hebrew", "David", Georgia, serif;
+  --wrap: 1120px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.65; }
+h1, h2, h3, p, ul, ol, figure, blockquote { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+h1, h2, h3 { text-wrap: balance; color: var(--navy); font-weight: 900; line-height: 1.16; }
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--peach); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: 100%; max-width: calc(var(--wrap) + 48px); margin-inline: auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: clamp(56px, 8vw, 104px); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 10px 26px; border-radius: 999px; background: var(--navy); color: var(--white); font-weight: 700; font-size: 17px; text-decoration: none; transition: background-color .18s ease, transform .18s ease; }
+.btn:hover { background: var(--navy-deep); transform: translateY(-2px); }
+.btn svg { width: 20px; height: 20px; flex: none; fill: currentColor; }
+.btn.warm { background: var(--peach); color: var(--navy-deep); }
+.btn.warm:hover { background: #f1cca6; }
+
+.hero { background: var(--navy); color: var(--white); overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: stretch; max-width: 1680px; margin-inline: auto; }
+.hero-text { padding-block: clamp(48px, 7vw, 96px); padding-right: max(24px, env(safe-area-inset-right, 0px), calc((min(100vw, 1680px) - var(--wrap)) / 2)); padding-left: clamp(24px, 4vw, 64px); display: grid; gap: 22px; justify-items: start; align-content: center; }
+.brand { font-size: 16px; color: var(--peach); font-weight: 500; }
+.hero h1 { color: var(--white); font-size: clamp(40px, 5.4vw, 70px); line-height: 1.08; }
+.hero h1 span { color: var(--peach); display: block; }
+.lead { font-size: clamp(18px, 1.7vw, 21px); color: var(--on-navy); max-width: 30em; }
+.where { font-size: 15px; color: var(--on-navy); }
+.hero-photo { min-height: 420px; }
+.hero-photo img { object-position: 4% 50%; }
+
+.venues { padding-block: 30px 34px; border-bottom: 1px solid var(--line); }
+.venues-title { text-align: center; font-size: 15px; font-weight: 500; color: var(--muted); margin-bottom: 18px; padding-inline: 24px; }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(to left, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to left, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: venues-scroll 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track li { flex: none; display: flex; align-items: center; padding-inline: clamp(22px, 3vw, 40px); }
+.marquee-track img { height: 74px; width: auto; object-fit: contain; }
+@keyframes venues-scroll { from { transform: translateX(0); } to { transform: translateX(50%); } }
+
+.stage-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 22px; align-items: start; max-width: 800px; }
+.num { grid-row: span 3; font-size: clamp(76px, 10vw, 128px); font-weight: 900; line-height: .86; color: var(--peach); }
+.eyebrow { font-size: 15px; font-weight: 700; color: var(--copper); }
+.stage-head h2 { font-size: clamp(32px, 4.2vw, 50px); }
+.stage-head p:last-child { color: var(--muted); font-size: clamp(18px, 1.6vw, 20px); margin-top: 10px; }
+
+.noise { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 26px; margin-top: 44px; padding-block: 22px; border-block: 1px solid var(--line); color: #7890a8; font-weight: 500; direction: ltr; justify-content: center; }
+.noise span:nth-child(3n+1) { font-size: 30px; color: var(--navy); font-weight: 700; }
+.noise span:nth-child(3n+2) { font-size: 19px; }
+.noise span:nth-child(3n) { font-size: 24px; color: var(--muted); }
+.impacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 44px; }
+.impacts h3 { font-size: 23px; margin-bottom: 8px; }
+.impacts p { color: var(--muted); }
+
+.stage-two { background: var(--mist); }
+.climb { margin-top: 44px; display: grid; gap: 10px; }
+.climb li { display: grid; grid-template-columns: 150px minmax(0, 1fr); align-items: center; gap: 14px; }
+.climb-labels { font-size: 14px; font-weight: 700; color: var(--muted); padding-inline: 24px; }
+.climb-labels span:nth-child(1) { grid-column: 2; }
+.climb-labels span:nth-child(2) { grid-column: 4; }
+.climb li { background: var(--white); border-radius: 14px; padding: 18px 24px; }
+.climb h3 { font-size: 19px; }
+.from { color: var(--muted); }
+.arrow { color: var(--copper); justify-self: center; }
+.arrow svg { width: 28px; height: 16px; display: block; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.to { color: var(--navy); font-weight: 700; }
+
+.demo { margin-top: 44px; }
+.demo-note { font-size: 15px; font-weight: 700; color: var(--copper); margin-bottom: 16px; }
+.demo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.demo-grid li { background: var(--white); border-radius: 16px; overflow: hidden; display: grid; grid-template-rows: 1fr auto; }
+.demo-grid figure { border-top: 1px solid var(--line); }
+.demo-grid img { aspect-ratio: 2 / 1; height: auto; object-position: top center; }
+.demo-grid figure.center img { object-position: center; }
+.demo-grid figcaption { font-size: 14px; color: var(--muted); padding: 10px 22px 14px; border-top: 1px solid var(--line); }
+.demo-text { padding: 20px 22px 18px; display: grid; gap: 6px; align-content: start; }
+.demo-text h3 { font-size: 20px; }
+.demo-text p { color: var(--ink); }
+
+.preida { background: var(--navy-deep); color: var(--white); }
+.preida-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.preida-video { border-radius: 20px; overflow: hidden; aspect-ratio: 960 / 648; background: #2a2218; }
+.preida-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.preida-text { display: grid; gap: 14px; }
+.preida .eyebrow { color: var(--peach); }
+.preida h2 { color: var(--white); font-size: clamp(32px, 4.2vw, 50px); }
+.preida-story { color: var(--on-navy); font-size: clamp(17px, 1.5vw, 19px); }
+.preida-story cite { display: inline; font-style: normal; margin: 0; font-size: inherit; color: var(--peach); }
+.preida-bridge { font-family: var(--serif); font-size: clamp(20px, 2vw, 25px); line-height: 1.55; color: var(--white); margin-top: 6px; }
+.preida-bridge::before { content: ""; display: block; width: 48px; height: 2px; background: var(--peach); margin-bottom: 16px; }
+
+.offer-title { font-size: clamp(32px, 4.2vw, 50px); text-align: center; }
+.offer-sub { text-align: center; color: var(--muted); font-size: clamp(18px, 1.6vw, 20px); margin-top: 10px; }
+.products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: clamp(36px, 5vw, 56px); align-items: start; }
+.product { display: grid; align-content: start; gap: 22px; background: var(--mist); border-radius: 22px; padding: 14px 14px 30px; }
+.product-body { padding-inline: 14px; }
+.product-photo { border-radius: 16px; overflow: hidden; aspect-ratio: 1500 / 675; background: var(--line); }
+.product-photo img { width: 100%; height: 100%; object-fit: cover; }
+.product-photo figcaption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.product-body { display: grid; gap: 14px; justify-items: start; }
+.tag { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; color: var(--copper); }
+.tag b { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--white); align-items: center; justify-content: center; font-size: 15px; }
+.product h3 { font-size: clamp(32px, 3.6vw, 44px); }
+.product-goal { font-size: 19px; color: var(--muted); }
+.gains { display: grid; gap: 9px; margin-bottom: 8px; }
+.gains li { position: relative; padding-right: 28px; }
+.gains li::before { content: ""; position: absolute; right: 2px; top: .62em; width: 11px; height: 11px; border-radius: 50%; background: var(--peach); }
+
+.voices { background: var(--mist); }
+.voices-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(36px, 6vw, 80px); align-items: start; }
+.voice-main p { font-family: var(--serif); color: var(--navy); font-size: clamp(23px, 2.5vw, 31px); line-height: 1.5; }
+.voice-side { display: grid; gap: 30px; }
+.voice-side p { font-family: var(--serif); font-size: 18px; line-height: 1.7; }
+cite { display: block; font-style: normal; margin-top: 14px; font-size: 15px; color: var(--muted); }
+cite strong { color: var(--navy); font-weight: 700; display: block; font-size: 17px; }
+
+.about-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 68px); align-items: center; }
+.about-photo { border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 3; }
+.about h2 { font-size: clamp(30px, 3.6vw, 44px); margin-bottom: 14px; }
+.about p { color: var(--muted); max-width: 34em; }
+
+.close { background: var(--navy); color: var(--white); text-align: center; }
+.close .wrap { display: grid; gap: 20px; justify-items: center; }
+.close h2 { color: var(--white); font-size: clamp(34px, 4.6vw, 56px); }
+.close p { color: var(--on-navy); font-size: 19px; }
+.phone { direction: ltr; unicode-bidi: isolate; font-size: 16px; color: var(--on-navy); user-select: all; }
+
+@media (max-width: 860px) {
+  body { font-size: 16.5px; }
+  .hero-grid, .product, .voices-grid, .about-grid, .preida-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-text { padding-right: max(24px, env(safe-area-inset-right, 0px)); padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-bottom: 36px; }
+  .hero-photo { min-height: 0; aspect-ratio: 16 / 10; }
+  .btn { width: 100%; }
+  .marquee-track img { height: 56px; }
+  .demo { margin-top: 32px; }
+  .demo-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .demo-text { padding: 16px 18px 14px; }
+  .demo-grid figcaption { padding: 9px 18px 12px; }
+  .noise { gap: 4px 18px; margin-top: 32px; }
+  .noise span:nth-child(3n+1) { font-size: 24px; }
+  .noise span:nth-child(3n) { font-size: 20px; }
+  .noise span:nth-child(3n+2) { font-size: 17px; }
+  .impacts { grid-template-columns: minmax(0, 1fr); gap: 26px; margin-top: 32px; }
+  .climb-labels { display: none; }
+  .climb li { grid-template-columns: minmax(0, 1fr); gap: 3px; padding: 16px 18px; }
+  .climb h3 { margin-bottom: 4px; }
+  .arrow { justify-self: start; transform: rotate(-90deg); margin-block: 3px; width: 28px; }
+  .products { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .product { padding: 10px 10px 24px; }
+  .product-body { padding-inline: 10px; }
+  .product-body { justify-items: stretch; }
+  .tag { justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+  .btn:hover { transform: none; }
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+  .marquee-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; row-gap: 22px; }
+  .marquee-track li[aria-hidden="true"] { display: none; }
+}
+</style>
+
+<div dir="rtl" lang="he">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.2-.4.6-1.200.1-.2 0-.3 0-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.300-.7.700-1 1.600-.9 2.500.2 1.300.8 2.500 1.700 3.500 1.600 2.100 3.500 3.300 5.700 3.900.800.200 1.900.100 2.500-.500.300-.400.500-.800.600-1.300 0-.200 0-.200-.200-.300Z"/></symbol></svg>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="brand">מלמד לאנוש בינה · הרב אפרים שרם</p>
+      <h1>מהפכת הבינה כבר כאן. <span>הצוות שלך מוכן?</span></h1>
+      <p class="lead">הרצאות וסדנאות לישיבות הסדר, מההיכרות הראשונה עם המהפכה ועד יצירה תורנית ברמה גבוהה.</p>
+      <a class="btn warm" href="https://wa.me/972536228498?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%A8%D7%91%20%D7%90%D7%A4%D7%A8%D7%99%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A8%D7%A6%D7%90%D7%94%20%D7%91%D7%99%D7%A9%D7%99%D7%91%D7%94%20%D7%A9%D7%9C%D7%A0%D7%95" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>לתיאום בוואטסאפ</a>
+    </div>
+    <div class="hero-photo"><img src="images/hall.jpg" alt="הרב אפרים שרם מרצה מול אולם מלא בישיבת מעלה אדומים" width="1600" height="864" fetchpriority="high"></div>
+  </div>
+</header>
+
+<main>
+  <section class="venues" aria-labelledby="venues-title">
+    <p class="venues-title" id="venues-title">הרצאות והשתלמויות שהועברו ב:</p>
+    <div class="marquee">
+      <ul class="marquee-track">
+        <li><img src="images/logos/beit-el.png" alt="ישיבת בית אל" width="164" height="160"></li>
+        <li><img src="images/logos/birkat-moshe.png" alt="ישיבת ברכת משה, מעלה אדומים" width="237" height="160"></li>
+        <li><img src="images/logos/avir-yaakov.png" alt="ישיבת בני עקיבא אביר יעקב" width="131" height="160"></li>
+        <li><img src="images/logos/el-ami.png" alt="אל עמי" width="426" height="160"></li>
+        <li><img src="images/logos/hemed.png" alt="חמ&quot;ד, החינוך הממלכתי-דתי" width="356" height="160"></li>
+        <li aria-hidden="true"><img src="images/logos/beit-el.png" alt="" width="164" height="160"></li>
+        <li aria-hidden="true"><img src="images/logos/birkat-moshe.png" alt="" width="237" height="160"></li>
+        <li aria-hidden="true"><img src="images/logos/avir-yaakov.png" alt="" width="131" height="160"></li>
+        <li aria-hidden="true"><img src="images/logos/el-ami.png" alt="" width="426" height="160"></li>
+        <li aria-hidden="true"><img src="images/logos/hemed.png" alt="" width="356" height="160"></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="stage-1">
+    <div class="wrap">
+      <div class="stage-head">
+        <span class="num" aria-hidden="true">1</span>
+        <p class="eyebrow">השלב הראשון</p>
+        <h2 id="stage-1">קשה להבין מה בכלל קורה</h2>
+        <p>כל שבוע מופיע כלי חדש, והר"מים הולכים לאיבוד בין הכלים, הכותרות וההשפעות.</p>
+      </div>
+      <div class="noise" aria-label="שמות של כלי בינה מלאכותית">
+        <span>ChatGPT</span><span>Perplexity</span><span>Gemini</span><span>Claude</span><span>NotebookLM</span><span>Canva</span><span>Copilot</span><span>Napkin</span><span>ElevenLabs</span>
+      </div>
+      <div class="impacts">
+        <article><h3>השפעה רוחנית</h3><p>מה הבינה עושה ללימוד, ליצירה ולעבודת ה'?</p></article>
+        <article><h3>השפעה חברתית</h3><p>איך היא משנה את התלמידים ואת הקשר בינם לבין רבותיהם?</p></article>
+        <article><h3>השפעה כלכלית</h3><p>לאיזה עולם עבודה הבוגרים שלנו עומדים לצאת?</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band preida" aria-labelledby="preida">
+    <div class="wrap preida-grid">
+      <figure class="preida-video">
+        <video id="preida-video" src="images/preida.mp4" poster="images/preida.jpg" width="960" height="648" autoplay muted loop playsinline preload="metadata" aria-label="רבי פרידא מראה לתלמידו ציור של כד"></video>
+      </figure>
+      <div class="preida-text">
+        <p class="eyebrow">רבי פרידא, הפדגוג הגדול</p>
+        <h2 id="preida">ארבע מאות פעמים, עד שהתלמיד מבין</h2>
+        <p class="preida-story">רבי פרידא חזר על הלימוד עם תלמידו ארבע מאות פעמים, וכשהתלמיד לא הבין, חזר איתו ארבע מאות פעמים נוספות <cite>(עירובין נד, ב)</cite>.</p>
+        <p class="preida-bridge">לר"מ של היום אין ארבע מאות שיעורים לכל סוגיה. הבינה מאפשרת לו להסביר את אותה סוגיה בעוד דרך ובעוד שלב.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band stage-two" aria-labelledby="stage-2">
+    <div class="wrap">
+      <div class="stage-head">
+        <span class="num" aria-hidden="true">2</span>
+        <p class="eyebrow">השלב השני</p>
+        <h2 id="stage-2">מבינים, אבל נתקעים בהתחלה</h2>
+        <p>גם מי שכבר משתמש בבינה מתקשה להגיע לרמות הגבוהות בכל סוגי השימוש.</p>
+      </div>
+      <div class="demo">
+        <p class="demo-note">דוגמה מסדנה בישיבת בית אל: הלכות חשמל בשבת</p>
+        <ul class="demo-grid">
+          <li><div class="demo-text"><h3>מקורות</h3><p>סורקת מאמרים, פסקים ותשובות, ומחזירה רשימת מקורות מסודרת עם הפניה לכל אחד.</p></div><figure><img src="images/demo-sources.jpg" alt="טבלת עשרת מקורות היסוד לחקר החשמל בשבת, שהופקה בחיפוש עמוק" width="1000" height="558" loading="lazy"><figcaption>דוגמה: עשרת מקורות היסוד לחקר החשמל בשבת</figcaption></figure></li>
+          <li><div class="demo-text"><h3>הכנת שיעור</h3><p>מציעה כמה פתיחות לשיעור, מזהה מראש את הקטעים שיקשו על התלמידים ומכינה שאלות הבנה בכמה רמות.</p></div><figure><img src="images/demo-opening.jpg" alt="הצעה לפתיחת שיעור: חמ&quot;ל שבת, דילמת רכז הביטחון" width="782" height="447" loading="lazy"><figcaption>דוגמה: פתיחה לשיעור, "חמ"ל שבת"</figcaption></figure></li>
+          <li><div class="demo-text"><h3>המחשה</h3><p>יוצרת תמונה מדויקת לפי הסוגיה, כך שהתלמיד רואה את המציאות שהגמרא מדברת עליה.</p></div><figure class="center"><img src="images/demo-image.jpg" alt="איור קנה של סיידין בשתי גרסאות: קנה קצר וקנה ארוך" width="1000" height="563" loading="lazy"><figcaption>דוגמה: קנה של סיידין, קצר וארוך</figcaption></figure></li>
+          <li><div class="demo-text"><h3>תוצרים</h3><p>הופכת את אותו חומר למצגת, לאינפוגרפיקה, למפת חשיבה או למשחק לימודי.</p></div><figure class="center"><img src="images/demo-infographic.jpg" alt="אינפוגרפיקה: שורשי איסור החשמל בשבת, מפת שיטות הפוסקים" width="1000" height="558" loading="lazy"><figcaption>דוגמה: מפת שיטות הפוסקים בחשמל בשבת</figcaption></figure></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="offer">
+    <div class="wrap">
+      <h2 class="offer-title" id="offer">שני מפגשים, אחד לכל שלב</h2>
+      <p class="offer-sub">אפשר להזמין כל מפגש בנפרד, או את שניהם כמסלול אחד.</p>
+      <div class="products">
+        <article class="product">
+          <figure class="product-photo"><img src="images/lecture.jpg" alt="הרצאה לתלמידי ישיבת מעלה אדומים" width="1500" height="900"></figure>
+          <div class="product-body">
+            <p class="tag"><b>1</b>הרצאה לצוות ולתלמידים</p>
+            <h3>מעוף הציפור</h3>
+            <p class="product-goal">היכרות רחבה עם מהפכת הבינה והמקומות שבהם היא פוגשת את התורה.</p>
+            <ul class="gains">
+              <li>מבינים מהי בינה מלאכותית וכיצד היא פועלת</li>
+              <li>רואים את השפעותיה הרוחניות, החברתיות והכלכליות</li>
+              <li>בוחנים את היחס בין התורה למהפכה</li>
+              <li>יוצאים עם המלצות מעשיות לעבודה בישיבה</li>
+            </ul>
+          </div>
+        </article>
+        <article class="product">
+          <figure class="product-photo"><img src="images/workshop.jpg" alt="הרב אפרים שרם מנחה סדנה מעשית בישיבת בית אל" width="1500" height="675"></figure>
+          <div class="product-body">
+            <p class="tag"><b>2</b>סדנה מעשית לצוות הר"מים</p>
+            <h3>בית היוצר</h3>
+            <p class="product-goal">התנסות מעשית ביצירה תורנית בעזרת בינה, על נושא שכל ר"מ מלמד.</p>
+            <ul class="gains">
+              <li>לומדים לנסח בקשות מדויקות ולבחור את הכלי המתאים</li>
+              <li>מאתרים מקורות בחיפוש עמוק ומארגנים את החומר</li>
+              <li>בונים פתיחה לשיעור, מטפלים בקטעים קשים ומכינים דף מקורות</li>
+              <li>יוצרים תמונות, תרשימים ואינפוגרפיקות שממחישים את הסוגיה</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band voices" aria-label="המלצות">
+    <div class="wrap voices-grid">
+      <blockquote class="voice-main">
+        <p>"בעקבות דיון והמלצה שעלתה פה בעבר, במסגרת ימי היערכות לשנה הבאה הזמנו את הרב אפרים שרם להרצאה לצוות שלנו (אורות שאול) על השימוש בAI בלימוד והוראת תורה בכלל ועם דגשים על הצרכים והרצונות של לימוד בישיבה. היה מוצלח גם לאלה שפחות הכירו והתנסו בזה וגם לאלה שכבר ידעו דבר או שניים. ממליצים בחום."</p>
+        <cite><strong>הרב יובל וקסלר</strong>ישיבת אורות שאול</cite>
+      </blockquote>
+      <div class="voice-side">
+        <blockquote>
+          <p>"הזמנו את הרב אפרים שרם לישיבת מדריכי תושב"ע על-מנת להכיר יותר מקרוב בחידושים שהבינה המלאכותית מזמנת עבורנו בדגש על הכנת מצגות. המפגש הועבר באופן מדורג ומקצועי והשאיר את צוות ההדרכה עם רצון להעמיק, לחקור ולהפיק את המירב לטובת הוראה איכותית בתושב"ע"</p>
+          <cite><strong>הרב אלקנה שטראוס</strong>מדריך תושב"ע ארצי בחמ"ד</cite>
+        </blockquote>
+        <blockquote>
+          <p>"תודה גדולה! השתלמות סופר חשובה!! נתת המון כלים חשובים ויעילים! והסברת בצורה ברורה ובהירה, תודה רבה רבה! המשך לעשות חייל!"</p>
+          <cite><strong>יוסי כהן</strong>מורה בתיכון במרכז הארץ</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="band about" aria-labelledby="about">
+    <div class="wrap about-grid">
+      <figure class="about-photo"><img src="images/speaker.jpg" alt="הרב אפרים שרם מסביר בהשתלמות למדריכי תושב&quot;ע" width="1200" height="900" loading="lazy"></figure>
+      <div>
+        <h2 id="about">הרב אפרים שרם</h2>
+        <p>ר"מ, מדריך ויוצר תורני. מלמד בישיבות הסדר ובישיבות תיכוניות, עורך תורני במכוני הלכה שונים, כותב תוכניות לימודים בגמרא לחמ"ד, וממובילי הטמעת הבינה המלאכותית בתושב"ע בחמ"ד.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="band close">
+  <div class="wrap">
+    <h2>נשמח להגיע גם לישיבה שלכם</h2>
+    <p>כתבו לי ונתאים יחד את המפגש לצוות שלכם.</p>
+    <a class="btn warm" href="https://wa.me/972536228498?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%A8%D7%91%20%D7%90%D7%A4%D7%A8%D7%99%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A8%D7%A6%D7%90%D7%94%20%D7%91%D7%99%D7%A9%D7%99%D7%91%D7%94%20%D7%A9%D7%9C%D7%A0%D7%95" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>שליחת הודעה בוואטסאפ</a>
+    <p class="phone">053-622-8498</p>
+  </div>
+</footer>
+</div>
+<script>
+(function () {
+  var v = document.getElementById('preida-video');
+  if (!v || !window.matchMedia) return;
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function apply() {
+    if (mq.matches) { v.removeAttribute('autoplay'); v.pause(); }
+    else { v.play().catch(function () {}); }
+  }
+  apply();
+  if (mq.addEventListener) mq.addEventListener('change', apply);
+})();
+</script>
+
+</html>
